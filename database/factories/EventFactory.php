@@ -24,6 +24,10 @@ class EventFactory extends Factory
             'description' => fake()->paragraph(),
             'seats' => fake()->numberBetween(1, $venue->capacity),
             'venue_id' => $venue->id,
+            'start_date' => fake()->dateTimeBetween('+2 week', '+1 year'),
+            'end_date' => fake()->dateTimeBetween('+3 months', '+2 years'),
+            'image' => fake()->imageUrl(),
+            'social_link' => fake()->url(),
         ];
     }
 }

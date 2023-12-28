@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(TransactionState::class)->constrained();
-            $table->unsignedFloat('amount');
+            $table->unsignedDecimal('amount');
             $table->timestamps();
         });
     }

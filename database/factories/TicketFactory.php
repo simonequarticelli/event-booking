@@ -23,6 +23,8 @@ class TicketFactory extends Factory
         return [
             'user_id' => User::factory(),
             'event_id' => Event::factory(),
+            'barcode' => fake()->isbn13(),
+            'expires_at' => fake()->dateTimeBetween('+1 week', '+2 year'),
             'ticket_state_id' => TicketState::all()->random(),
             'transaction_id' => Transaction::all()->random(),
             'price' => fake()->randomFloat('2', '10', '1000'),

@@ -21,7 +21,11 @@ return new class extends Migration
             $table->foreignIdFor(Event::class)->constrained();
             $table->foreignIdFor(TicketState::class)->constrained();
             $table->foreignIdFor(Transaction::class)->constrained();
-            $table->unsignedFloat('price');
+            $table->unsignedDecimal('price');
+            $table->string('barcode');
+            $table->dateTime('expires_at');
+            $table->dateTime('used_at')->nullable();
+            $table->dateTime('cancelled_at')->nullable();
             $table->timestamps();
         });
     }

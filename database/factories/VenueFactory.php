@@ -20,6 +20,14 @@ class VenueFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->paragraph(),
             'capacity' => fake()->numberBetween(1, 1000),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'country' => fake()->country(),
+            'postcode' => fake()->postcode(),
+            'latitude' => fake()->latitude(),
+            'longitude' => fake()->longitude(),
+            'image' => fake()->imageUrl(),
+            'website' => fake()->url(),
         ];
     }
 }

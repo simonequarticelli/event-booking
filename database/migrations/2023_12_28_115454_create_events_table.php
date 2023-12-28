@@ -18,6 +18,10 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->unsignedMediumInteger('seats');
             $table->foreignIdFor(Venue::class)->constrained();
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->string('image')->nullable();
+            $table->string('social_link')->nullable();
             $table->timestamps();
         });
     }
