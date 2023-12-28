@@ -17,7 +17,9 @@ class TransactionStateFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'slug' => fake()->slug(),
+            'description' => fake()->description(),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\TransactionState;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'state_id' => TransactionState::factory(),
+            'amount' => fake()->amount(),
         ];
     }
 }

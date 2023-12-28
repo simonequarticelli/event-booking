@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Venue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'description' => fake()->description(),
+            'seats' => fake()->randomNumber(),
+            'venue_id' => Venue::factory(),
         ];
     }
 }

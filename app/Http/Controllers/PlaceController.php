@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
-use App\Models\Place;
+use App\Models\Venue;
 
 class PlaceController extends Controller
 {
@@ -35,7 +35,7 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Place $place)
+    public function show(Venue $place)
     {
         //
     }
@@ -43,7 +43,7 @@ class PlaceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Place $place)
+    public function edit(Venue $place)
     {
         //
     }
@@ -51,7 +51,7 @@ class PlaceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlaceRequest $request, Place $place)
+    public function update(UpdatePlaceRequest $request, Venue $place)
     {
         //
     }
@@ -59,7 +59,7 @@ class PlaceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Place $place)
+    public function destroy(Venue $place)
     {
         //
     }
