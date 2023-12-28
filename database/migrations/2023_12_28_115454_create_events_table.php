@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Place;
+use App\Models\Venue;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description')->nullable();
             $table->unsignedMediumInteger('seats');
-            $table->foreignIdFor(Place::class)->constrained();
+            $table->foreignIdFor(Venue::class)->constrained();
             $table->timestamps();
         });
     }

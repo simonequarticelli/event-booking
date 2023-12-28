@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Event::class)->constrained();
-            $table->foreignIdFor(TicketState::class)->constrained();
+            $table->foreignIdFor(TicketState::class, 'state_id')->constrained();
             $table->foreignUuid('transaction_id')->constrained();
             $table->unsignedFloat('price');
             $table->timestamps();
