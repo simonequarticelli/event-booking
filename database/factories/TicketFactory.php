@@ -23,9 +23,9 @@ class TicketFactory extends Factory
         return [
             'user_id' => User::factory(),
             'event_id' => Event::factory(),
-            'state_id' => TicketState::factory(),
-            'transaction_id' => Transaction::factory(),
-            'price' => fake()->price(),
+            'ticket_state_id' => TicketState::all()->random(),
+            'transaction_id' => Transaction::all()->random(),
+            'price' => fake()->randomFloat('2', '10', '1000'),
         ];
     }
 }

@@ -14,9 +14,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(TransactionState::class, 'state_id')->constrained();
+            $table->foreignIdFor(TransactionState::class)->constrained();
             $table->unsignedFloat('amount');
             $table->timestamps();
         });

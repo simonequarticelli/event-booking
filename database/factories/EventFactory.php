@@ -17,11 +17,13 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
+        $venue = Venue::factory()->create();
+
         return [
             'name' => fake()->name(),
-            'description' => fake()->description(),
-            'seats' => fake()->randomNumber(),
-            'venue_id' => Venue::factory(),
+            'description' => fake()->paragraph(),
+            'seats' => fake()->numberBetween(1, $venue->capacity),
+            'venue_id' => $venue->id,
         ];
     }
 }

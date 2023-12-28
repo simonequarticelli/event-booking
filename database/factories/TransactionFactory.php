@@ -20,8 +20,8 @@ class TransactionFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'state_id' => TransactionState::factory(),
-            'amount' => fake()->amount(),
+            'transaction_state_id' => TransactionState::all()->random(),
+            'amount' => 0.00,
         ];
     }
 }
