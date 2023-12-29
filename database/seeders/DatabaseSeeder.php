@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Event;
+use App\Models\EventOption;
 use App\Models\EventPrice;
 use App\Models\Ticket;
 use App\Models\Transaction;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         Venue::factory(50)->create();
         Event::factory(10)->create()->each(function (Event $event) {
             $event->price()->save(EventPrice::factory()->make());
+            $event->option()->save(EventOption::factory()->make());
         });;
         Transaction::factory(200)->create();
         Ticket::factory(1000)->create();

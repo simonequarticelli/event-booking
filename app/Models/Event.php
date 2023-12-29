@@ -17,6 +17,11 @@ class Event extends Model
         return $this->hasOne(EventPrice::class);
     }
 
+    public function option(): hasOne
+    {
+        return $this->hasOne(EventOption::class);
+    }
+
     public function venue(): BelongsTo
     {
         return $this->belongsTo(Venue::class);
