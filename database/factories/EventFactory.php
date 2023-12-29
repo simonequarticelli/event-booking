@@ -17,7 +17,7 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $venue = Venue::factory()->create();
+        $venue = Venue::all()->random();
 
         return [
             'name' => fake()->name(),

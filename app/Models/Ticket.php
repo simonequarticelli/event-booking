@@ -10,8 +10,20 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(TicketState::class);
+    }
+
     public function transaction(): BelongsTo
     {
         return $this->belongsTo(Transaction::class);
     }
+
+
 }

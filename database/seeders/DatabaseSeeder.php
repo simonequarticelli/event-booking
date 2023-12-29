@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Event;
+use App\Models\EventPrice;
 use App\Models\Ticket;
 use App\Models\Transaction;
 use App\Models\User;
@@ -21,17 +22,17 @@ class DatabaseSeeder extends Seeder
             TransactionStateSeeder::class,
         ]);
 
-        User::factory(10)->create();
-        Venue::factory(500)->create();
-        Event::factory(1000)->create();
-
-        Transaction::factory(500)
-            ->hasTickets(fake()->numberBetween(1, 5))
-            ->create();
+        User::factory(100)->create();
+        Venue::factory(50)->create();
+        Event::factory(10)->create()->each(function (Event $event) {
+            $event->price()->save(EventPrice::factory()->make());
+        });;
+        Transaction::factory(200)->create();
+        Ticket::factory(1000)->create();
 
         Transaction::all()->each(function (Transaction $transaction): void {
             $transaction->update([
-                'amount' => $transaction->tickets()->sum('price')
+                'amount' => $transaction->tickets()->sum('price'),
             ]);
         });
     }

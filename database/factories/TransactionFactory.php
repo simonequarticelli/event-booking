@@ -19,9 +19,9 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::all()->random(),
             'transaction_state_id' => TransactionState::all()->random(),
-            'amount' => 0.00,
+            'amount' => fake()->randomFloat('2', '10', '1000'),
         ];
     }
 }

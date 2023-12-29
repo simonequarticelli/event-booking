@@ -21,8 +21,7 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'event_id' => Event::factory(),
+            'event_id' => Event::all()->random(),
             'barcode' => fake()->isbn13(),
             'expires_at' => fake()->dateTimeBetween('+1 week', '+2 year'),
             'ticket_state_id' => TicketState::all()->random(),

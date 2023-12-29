@@ -17,7 +17,6 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Event::class)->constrained();
             $table->foreignIdFor(TicketState::class)->constrained();
             $table->foreignIdFor(Transaction::class)->constrained();
