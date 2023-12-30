@@ -84,8 +84,6 @@ class ReservationController extends Controller
             return response()->json(['error' => 'Something went wrong. Please try again.'], 404);
         }
 
-        // TODO: event
-
         return response()->json(['status' => 'booking successful']);
     }
 }
