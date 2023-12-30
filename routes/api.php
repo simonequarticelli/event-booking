@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PayController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::post('/reservation', ReservationController::class);
+Route::post('/pay', PayController::class);
 
 Route::resources([
     'events' => EventController::class,
