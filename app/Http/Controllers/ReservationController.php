@@ -37,9 +37,9 @@ class ReservationController extends Controller
         DB::beginTransaction();
         try {
             try {
-                $activeTransaction = $this->userService->getActiveTransaction();
+                $pendingTransaction = $this->userService->pendingTransaction()->first();
 
-                if ($activeTransaction === null) {
+                if ($pendingTransaction === null) {
                     $transaction = Transaction::create([
                         // 'user_id' => auth()->id(),
                         'user_id' => 1,
@@ -47,7 +47,7 @@ class ReservationController extends Controller
                         'amount' => 0,
                     ]);
                 } else {
-                    $transaction = $activeTransaction;
+                    $transaction = $pendingTransaction;
                 }
 
                 $totalPrice = 0.00;
