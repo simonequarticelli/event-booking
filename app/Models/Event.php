@@ -22,7 +22,7 @@ class Event extends Model
     public function getTicketsAvailableAttribute()
     {
         $reservedTickets = $this->tickets()->with('state', function ($query) {
-            $query->whereIn('slug', ['pending', 'approved']);
+            $query->whereIn('slug', [TicketState::PENDING, TicketState::APPROVED]);
         })->count();
 
         return ($this->seats - $reservedTickets);
