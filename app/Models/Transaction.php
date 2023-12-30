@@ -25,6 +25,6 @@ class Transaction extends Model
     }
     public function state(): BelongsTo
     {
-        return $this->belongsTo(TransactionState::class);
+        return $this->belongsTo(TransactionState::class, 'transaction_state_id', 'id');
     }
 }

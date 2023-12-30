@@ -19,7 +19,7 @@ class Ticket extends Model
 
     public function state(): BelongsTo
     {
-        return $this->belongsTo(TicketState::class);
+        return $this->belongsTo(TicketState::class, 'ticket_state_id', 'id');
     }
 
     public function transaction(): BelongsTo
