@@ -31,6 +31,11 @@ class TransactionStateSeeder extends Seeder
                 'description' => 'The transaction has been approved.',
             ],
             [
+                'name' => 'Rejected',
+                'slug' => 'rejected',
+                'description' => 'The transaction has been rejected.',
+            ],
+            [
                 'name' => 'Cancelled',
                 'slug' => 'cancelled',
                 'description' => 'The transaction has been cancelled.',
