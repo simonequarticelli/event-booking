@@ -10,6 +10,11 @@ class TransactionState extends Model
 {
     use HasFactory;
 
+    const PENDING = 'pending';
+    const WAITING_FOR_APPROVAL = 'waiting-for-approval';
+    const APPROVED = 'approved';
+    const CANCELLED = 'cancelled';
+
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);

@@ -10,6 +10,10 @@ class TicketState extends Model
 {
     use HasFactory;
 
+    const PENDING = 'pending';
+    const APPROVED = 'approved';
+    const REJECTED = 'rejected';
+
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);
