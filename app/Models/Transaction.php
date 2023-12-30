@@ -12,6 +12,8 @@ class Transaction extends Model
 {
     use HasFactory, FilterableByDates;
 
+    protected $guarded = [];
+
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);
