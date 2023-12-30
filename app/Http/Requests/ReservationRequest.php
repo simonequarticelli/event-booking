@@ -24,6 +24,7 @@ class ReservationRequest extends FormRequest
     {
         return [
             'events.*.id' => ['required', 'exists:App\Models\Event,id'],
+            'events.*.seats' => ['required', 'array'],
             'events.*.seats.*.type' => ['required', Rule::in(['standard', 'premium', 'gold'])],
         ];
     }
@@ -38,7 +39,8 @@ class ReservationRequest extends FormRequest
         return [
             'events.*.id.required' => 'The event field is required.',
             'events.*.id.exists' => 'The event not exists.',
-            'events.*.seats.*.required' => 'The type seat is required.',
+            'events.*.seats.required' => 'The seats are required.',
+            'events.*.seats.*.type.required' => 'The seat type is required.',
         ];
     }
 }
