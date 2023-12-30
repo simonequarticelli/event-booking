@@ -22,12 +22,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('/reservation', ReservationController::class);
+    Route::post('/pay', PayController::class);
+
+    Route::resources([
+        'events' => EventController::class,
+        'tickets' => TicketController::class,
+    ]);
 });
-
-Route::post('/reservation', ReservationController::class);
-Route::post('/pay', PayController::class);
-
-Route::resources([
-    'events' => EventController::class,
-    'tickets' => TicketController::class,
-]);

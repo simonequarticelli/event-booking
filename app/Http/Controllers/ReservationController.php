@@ -8,7 +8,6 @@ use App\Models\Ticket;
 use App\Models\TicketState;
 use App\Models\Transaction;
 use App\Models\TransactionState;
-use App\Models\User;
 use App\Services\EventService;
 use App\Services\UserService;
 use Exception;
@@ -39,10 +38,9 @@ class ReservationController extends Controller
             try {
                 $pendingTransaction = $this->userService->pendingTransaction()->first();
 
-                if ($pendingTransaction === null) {
+                if (empty($pendingTransaction)) {
                     $transaction = Transaction::create([
-                        // 'user_id' => auth()->id(),
-                        'user_id' => 1,
+                        'user_id' => auth()->user()->id,
                         'transaction_state_id' => TransactionState::where('slug', TransactionState::PENDING)->first()->id,
                         'amount' => 0,
                     ]);
