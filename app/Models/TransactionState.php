@@ -13,6 +13,7 @@ class TransactionState extends Model
     const PENDING = 'pending';
     const WAITING_FOR_APPROVAL = 'waiting-for-approval';
     const APPROVED = 'approved';
+    const REJECTED = 'rejected';
     const CANCELLED = 'cancelled';
 
     public function transactions(): HasMany
