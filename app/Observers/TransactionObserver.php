@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\TicketState;
 use App\Models\Transaction;
 use App\Models\TransactionState;
+use Illuminate\Support\Facades\Log;
 
 class TransactionObserver
 {
@@ -21,13 +22,14 @@ class TransactionObserver
      */
     public function updated(Transaction $transaction): void
     {
+        Log::info($transaction->state->slug);
         switch ($transaction->state->slug) {
             case TransactionState::APPROVED:
                 $transaction->tickets()->update([
-                    'state_id' => TicketState::find(TicketState::APPROVED)->id
+                    'ticket_state_id' => TicketState::firstWhere('slug', TicketState::APPROVED)->id
                 ]);
                 break;
-            case TransactionState::CANCELLED:
+            case TransactionState::REJECTED:
                 $transaction->tickets()->delete();
                 break;
         }
