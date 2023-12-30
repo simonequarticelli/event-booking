@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Http\Resources\TicketResource;
 use App\Models\Ticket;
+use App\Models\User;
+use App\Services\UserService;
 
 class TicketController extends Controller
 {
+    private UserService $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return TicketResource::collection($this->userService->pendingTickets()->paginate());
     }
 
     /**
