@@ -29,13 +29,13 @@ class DatabaseSeeder extends Seeder
             $event->price()->save(EventPrice::factory()->make());
             $event->option()->save(EventOption::factory()->make());
         });;
-        Transaction::factory(200)->create();
-        Ticket::factory(1000)->create();
-
-        Transaction::all()->each(function (Transaction $transaction): void {
-            $transaction->update([
-                'amount' => $transaction->tickets()->sum('price'),
-            ]);
-        });
+//        Transaction::factory(200)->create();
+//        Ticket::factory(1000)->create();
+//
+//        Transaction::all()->each(function (Transaction $transaction): void {
+//            $transaction->update([
+//                'amount' => $transaction->tickets()->sum('price'),
+//            ]);
+//        });
     }
 }
