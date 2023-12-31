@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(TransactionState::class)->constrained();
             $table->unsignedDecimal('amount');
