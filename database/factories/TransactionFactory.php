@@ -19,6 +19,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => fake()->uuid(),
             'user_id' => User::all()->random(),
             'transaction_state_id' => TransactionState::all()->random(),
             'amount' => fake()->randomFloat('2', '10', '1000'),
