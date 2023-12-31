@@ -13,6 +13,6 @@ class SendEmailTransactionStateNotification
      */
     public function handle(TransactionProcessed $event): void
     {
-        Mail::to(auth()->user()->email)->send(new TransactionProcessedMail($event->transaction, $event->stateSlug));
+        Mail::to(auth()->user()->email)->send(new TransactionProcessedMail($event->transaction));
     }
 }

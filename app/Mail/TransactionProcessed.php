@@ -17,8 +17,7 @@ class TransactionProcessed extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        public Transaction $transaction,
-        public string $stateSlug
+        public Transaction $transaction
     ){}
 
     /**
@@ -41,7 +40,6 @@ class TransactionProcessed extends Mailable
             with: [
                 'user' => auth()->user(),
                 'transaction' => $this->transaction->tickets->load('event.venue')->groupBy('event_id'),
-                'stateSlug' => $this->stateSlug,
             ],
         );
     }

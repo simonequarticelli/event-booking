@@ -15,7 +15,6 @@ class TransactionProcessed
      * Create a new event instance.
      */
     public function __construct(
-        public Transaction $transaction,
-        public string $stateSlug,
+        public Transaction $transaction
     ) {}
 }
