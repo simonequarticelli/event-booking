@@ -6,17 +6,13 @@ use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Http\Resources\TicketResource;
 use App\Models\Ticket;
-use App\Models\User;
 use App\Services\UserService;
 
 class TicketController extends Controller
 {
-    private UserService $userService;
-
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(
+        public UserService $userService,
+    ) {}
 
     /**
      * Display a listing of the resource.

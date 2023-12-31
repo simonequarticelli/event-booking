@@ -18,12 +18,9 @@ use Throwable;
 
 class ReservationController extends Controller
 {
-    private UserService $userService;
-
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(
+        public UserService $userService,
+    ) {}
 
     /**
      * Handle the incoming request.
