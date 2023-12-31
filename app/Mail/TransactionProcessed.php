@@ -40,7 +40,7 @@ class TransactionProcessed extends Mailable
             markdown: 'mail.transaction.processed',
             with: [
                 'user' => auth()->user(),
-                'transaction' => $this->transaction,
+                'transaction' => $this->transaction->tickets->load('event.venue')->groupBy('event_id'),
                 'stateSlug' => $this->stateSlug,
             ],
         );
