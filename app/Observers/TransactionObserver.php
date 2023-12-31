@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\TransactionProcessed;
 use App\Models\TicketState;
 use App\Models\Transaction;
 use App\Models\TransactionState;
@@ -22,7 +23,6 @@ class TransactionObserver
      */
     public function updated(Transaction $transaction): void
     {
-        Log::info($transaction->state->slug);
         switch ($transaction->state->slug) {
             case TransactionState::APPROVED:
                 $transaction->tickets()->update([
@@ -30,9 +30,12 @@ class TransactionObserver
                 ]);
                 break;
             case TransactionState::REJECTED:
+                Log::info($transaction->tickets);
                 $transaction->tickets()->delete();
                 break;
         }
+
+        TransactionProcessed::dispatch($transaction, $transaction->state->slug);
     }
 
     /**

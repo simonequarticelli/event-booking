@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\TransactionProcessed;
+use App\Listeners\SendEmailTransactionStateNotification;
 use App\Models\Transaction;
 use App\Observers\TransactionObserver;
 use Illuminate\Auth\Events\Registered;
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        TransactionProcessed::class => [
+            SendEmailTransactionStateNotification::class,
         ],
     ];
 
