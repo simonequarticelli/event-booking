@@ -35,7 +35,9 @@ class TransactionObserver
                 break;
         }
 
-        TransactionProcessed::dispatch($transaction, $transaction->state->slug);
+        if (in_array($transaction->state->slug, [TransactionState::APPROVED, TransactionState::REJECTED])) {
+            TransactionProcessed::dispatch($transaction, $transaction->state->slug);
+        }
     }
 
     /**
