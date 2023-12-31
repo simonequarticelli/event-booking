@@ -3,7 +3,7 @@
 
 Below you will find the outcome of your transaction
 
-UUID: ***TODO***<br>
+UUID: ***{{$transaction->uuid}}***<br>
 State: ***{{$transaction->state->name}}***<br>
 Amount: ***{{$transaction->amount}}€***<br>
 

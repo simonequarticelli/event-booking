@@ -37,6 +37,7 @@ class ReservationController extends Controller
 
                 if (empty($pendingTransaction)) {
                     $transaction = Transaction::create([
+                        'uuid' => fake()->uuid(),
                         'user_id' => auth()->user()->id,
                         'transaction_state_id' => TransactionState::where('slug', TransactionState::PENDING)->first()->id,
                         'amount' => 0,
