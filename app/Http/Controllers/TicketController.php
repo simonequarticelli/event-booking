@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTicketRequest;
 use App\Http\Resources\TicketResource;
 use App\Models\Ticket;
 use App\Services\UserService;
+use Throwable;
 
 class TicketController extends Controller
 {
@@ -19,7 +20,13 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return TicketResource::collection($this->userService->pendingTickets()->paginate());
+        try {
+            $tickets = $this->userService->pendingTickets();
+        } catch (Throwable $e) {
+            return response()->json(['error' => $e->getMessage()], 404);
+        }
+
+        return TicketResource::collection($tickets->paginate());
     }
 
     /**

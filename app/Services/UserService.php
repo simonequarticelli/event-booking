@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\TransactionState;
+use Exception;
 
 class UserService
 {
@@ -13,8 +14,15 @@ class UserService
         });
     }
 
+    /**
+     * @throws Exception
+     */
     public function pendingTickets()
     {
+        if (empty(self::pendingTransaction()->first())) {
+            throw new Exception('No pending transaction found.');
+        }
+
         return self::pendingTransaction()->first()->tickets();
     }
 }
