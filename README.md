@@ -167,36 +167,81 @@ ___
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+#### Docker
+- __For Mac:__
+  - Download Docker Desktop for Mac from the Docker Hub website at 👉 [this link](https://docs.docker.com/desktop/install/mac-install/).
+  - Once the Docker.dmg file is downloaded, open it.
+  - Drag and drop the Docker app onto the Applications folder in the opened window.
+  - Open the Docker app from the Applications folder. You may be asked to provide your system password for the installer to make changes.
+  - Wait for the Docker Desktop to notify you that it's ready. It'll appear as a whale icon in your top menu bar.
+  
+- __For Windows:__
+  - Download Docker Desktop for Windows from the Docker Hub website at 👉 [this link](https://docs.docker.com/desktop/install/windows-install/).
+  - Once the Docker Desktop Installer.exe is downloaded, run it.
+  - In the installation wizard, ensure the "Enable Hyper-V Windows Features" or "Install required Windows components for WSL 2" option is selected and proceed with the installation.
+  - When the installation completes, the Docker Desktop application launches automatically.
+  - Wait until the Docker Desktop app displays a whale icon in the notification area, indicating that Docker is up and running.
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+
+For both Mac and Windows, after installing Docker Desktop, you can verify the installation by opening a terminal window and typing the following command:
+    
+```sh
+docker --version
+```
 
 ### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/simonequarticelli/event-booking.git
    ```
-3. Install NPM packages
+2. Move into project folder
    ```sh
-   npm install
+    cd event-booking
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. install prerequisites (composer and php)
+   ```sh
+   ./prerequisites.sh
    ```
+4. Run docker container
+   ```sh
+   docker compose up -d
+   ```
+5. Create database
+   ```sh
+   php artisan migrate
+   ```
+6. Seeding
+   ```sh
+   php artisan db:seed
+   ```
+7. To send emails locally, modify the following environment variables. A service that could work well 👉 [link](https://mailtrap.io/) 
+   ```sh
+    MAIL_MAILER=smtp
+    MAIL_HOST=mailpit
+    MAIL_PORT=1025
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    MAIL_ENCRYPTION=null
+    MAIL_FROM_ADDRESS="hello@example.com"
+    MAIL_FROM_NAME="${APP_NAME}"
+   ```
+<br />
+<br />
+
+If you want to export postman collection 👉 [link](https://github.com/andreaselia/laravel-api-to-postman)
+   ```sh
+   php artisan export:postman 
+   ```
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Database schema
+![img_2.png](images/img_7.png)
 
 
 <!-- USAGE EXAMPLES -->
@@ -208,9 +253,16 @@ This is an example of how to list things you need to use the software and how to
 ## Roadmap
 
 - [x] Data modeling
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [X] Laravel framework
+- [X] Laravel Breeze scaffolding
+- [X] User Account Management
+- [X] Create tables, migrations, factories and seeders
+- [X] Relationships between models
+- [X] Event Viewing
+- [X] Seat Booking
+- [X] Checkout and Payment
+- [X] Sending email
+
 
 See the [open issues](https://github.com/simonequarticelli/event-booking/issues) for a full list of proposed features (and known issues).
 
