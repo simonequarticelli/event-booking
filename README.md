@@ -238,6 +238,15 @@ docker --version
     MAIL_FROM_ADDRESS="hello@example.com"
     MAIL_FROM_NAME="${APP_NAME}"
    ```
+
+8. Install postman 👉 [link](https://www.postman.com/downloads)
+
+
+9. Import collection 👉 [guide](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-and-exporting-overview)
+    ```text
+       event-booking.postman_collection.json
+   ```
+
 <br />
 <br />
 
