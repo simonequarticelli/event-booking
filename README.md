@@ -210,9 +210,20 @@ docker --version
    docker compose up -d
    ```
 5. Create database
-   ```sh
-   php artisan migrate
-   ```
+   - For convenience I use a sqlite. To set it, modify the following variables by environment like this 
+     ```sh
+      DB_CONNECTION=sqlite
+      #DB_CONNECTION=mysql
+      #DB_HOST=mysql
+      #DB_PORT=3306
+      #DB_DATABASE=event_booking
+      #DB_USERNAME=sail
+      #DB_PASSWORD=password
+      ```
+   - And lunch 
+      ```sh
+      php artisan migrate
+      ```
 6. Seeding
    ```sh
    php artisan db:seed
