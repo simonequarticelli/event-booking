@@ -200,7 +200,7 @@ docker --version
    ```sh
     cd event-booking
    ```
-3. install prerequisites (composer and php)
+3. install prerequisites (composer and php) 👉 [link](https://www.postman.com/downloads)
    ```sh
    ./prerequisites.sh
    ```
