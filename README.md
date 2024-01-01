@@ -30,23 +30,26 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">project_title</h3>
+[//]: # (  <a href="https://github.com/simonequarticelli/event-booking">)
+
+[//]: # (    <img src="images/logo.png" alt="Logo" width="80" height="80">)
+
+[//]: # (  </a>)
+
+<h3 align="center">Event Booking</h3>
 
   <p align="center">
-    project_description
+    The Event Booking project is a web application that allows users to browse available events, select an event of interest, choose the number and location of the seats they wish to book, and complete the booking.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/simonequarticelli/event-booking"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/simonequarticelli/event-booking">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/simonequarticelli/event-booking/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/simonequarticelli/event-booking/issues">Request Feature</a>
   </p>
 </div>
 
@@ -83,88 +86,80 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-il progetto simula  permette di prenotare eventi e gestisce  eventi in base 
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-- tipologia di posto - in base alla tipologia di posto il prezzo sarà differente
-- Esiste solo una transazione attiva per utente alla volta 
-- Se esiste già una transazione per l'utente essa viene alimentata
-- Controllo sulla 
-- Invio di una mail di riepilogo con l'esito della transazione (simulata e randomica) e il riepilogo dei tickets acquistati
-- Scrittura di logs in caso di errore
-- Creato un trait FilterableByDatas per fare statistica sulle transazioni
-- Quando una transazione viene rifiutata i sui relativi tickets prenotati vengono cancellati  
+### Event Viewing
+Users can browse a list of events, sorted by date. For each event, information about the location, date and time, event description, availability and ticket prices are displayed.
 
+![img.png](images/img.png)
 
-- concetti
-- bascket
+__Bonus:__
+Each event will have three types of seats type of seat _standard_, _premium_, _gold_. Depending on the type chosen the price will be different.
 
-- concetti tecnici
-- events
-- listeners
-- services
-- API resources
-- API pagination
-- computed properyy on model (ticket_available)
+### Seat Booking
+The user can select the types of seats per event and proceed with the booking.<br />
+![img_2.png](images/img_2.png)<br />
+At the time of the booking request, some checks will be made to validate the request. ex. on the availability of places and the type requested.<br />
+![img_4.png](images/img_4.png)
+
+### Checkout and Payment
+After selecting seats (even on multiple events), the user proceeds to checkout. The app randomly misses a confirmation/decline email to the user with the details of their purchase.<br />
+#### Response example
+![img_3.png](images/img_3.png)<br />
+![img_5.png](images/img_5.png)<br />
+#### Email example
+![img_6.png](images/img_6.png)
+### User Account Management
+Users can create an account, log in and log out. The user profile maintains a record of the user's past and future bookings.
+
+___
+
+### Additional features
+- The reservation was planned with the concept of shopping cart
+- There is only one active transaction per user at a time 
+- If an active transaction already exists for the user and he executes another request it is powered
+- Writing logs in case of error
+- Created a FilterableByDatas trait to do statistics on transactions
+- When a transaction is rejected, the related booked tickets are cancelled
+
+### Technical concepts
+- Events
+- Listeners
+- Services
+- Resources response
+- Pagination response
+- computed property on model (ticket_available)
 - DB trasaction per integrità del dato
 
+### TODO
 
-TODO
-reservation expired
-sync basket sync
-event in sale
-queue
-repository pattern
+- [ ] Reservation expired
+- [ ] Sync shopping cart
+- [ ] Discount on events
+- [ ] Queue
+- [ ] Repository pattern
 
-
-
-API
+### API list 
 - auth
   - login
   - register
   - logout
   - me
-
-
 - events
-  - lista eventi con relativa disponibilità
-
-
+  - list of events with relative availability
 - pay
-  - checkout and basket pay
-
-
+  - checkout and shopping cart pay
 - reservation
-  - add to basket 
-
-
-- my-tickets
-    - show basket
-
-
-
-
-
-
-
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+  - add to shopping cart
+- my-reservation
+    - show shopping cart
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+[![Laravel][Laravel.com]][Laravel-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -189,7 +184,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/simonequarticelli/event-booking.git
    ```
 3. Install NPM packages
    ```sh
@@ -223,7 +218,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/simonequarticelli/event-booking/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -259,39 +254,27 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+- __[@linkedin][linkedin-url]__ 
+- __[@github](https://github.com/simonequarticelli)__ 
+- quarticelli.simone@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+Project Link: __[https://github.com/simonequarticelli/event-booking](https://github.com/simonequarticelli/event-booking)__
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/simonequarticelli/event-booking.svg?style=for-the-badge
+[contributors-url]: https://github.com/simonequarticelli/event-booking/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/simonequarticelli/event-booking.svg?style=for-the-badge
+[forks-url]: https://github.com/simonequarticelli/event-booking/network/members
+[stars-shield]: https://img.shields.io/github/stars/simonequarticelli/event-booking.svg?style=for-the-badge
+[stars-url]: https://github.com/simonequarticelli/event-booking/stargazers
+[issues-shield]: https://img.shields.io/github/issues/simonequarticelli/event-booking.svg?style=for-the-badge
+[issues-url]: https://github.com/simonequarticelli/event-booking/issues
+[license-shield]: https://img.shields.io/github/license/simonequarticelli/event-booking.svg?style=for-the-badge
+[license-url]: https://github.com/simonequarticelli/event-booking/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://www.linkedin.com/in/simone-quarticelli-1090b7193
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
