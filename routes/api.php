@@ -23,7 +23,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::post('/reservation', ReservationController::class);
+    Route::post('/reservation', ReservationController::class)
+        ->name('reservation');
+
     Route::post('/pay', PayController::class);
 
     Route::resources([

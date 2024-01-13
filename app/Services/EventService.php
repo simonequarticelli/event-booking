@@ -49,21 +49,20 @@ class EventService
 
     public function processEvent(array $event, Transaction $transaction, float &$totalPrice): void
     {
-        $eventService = new EventService($event['id']);
         $seatsQuantity = count($event['seats']);
 
-        $eventService->validateByOptionsConfig($seatsQuantity);
-        $eventService->availabilityCheck($seatsQuantity);
+        $this->validateByOptionsConfig($seatsQuantity);
+        $this->availabilityCheck($seatsQuantity);
 
 
         foreach ($event['seats'] as $seat) {
-            $totalPrice = $totalPrice+$eventService->getPriceByType($seat['type']);
+            $totalPrice = $totalPrice + $this->getPriceByType($seat['type']);
 
             Ticket::create([
                 'event_id' => $event['id'],
                 'ticket_state_id' => TicketState::where('slug', TicketState::PENDING)->first()->id,
                 'transaction_id' => $transaction->id,
-                'price' => $eventService->getPriceByType($seat['type']),
+                'price' => $this->getPriceByType($seat['type']),
                 'barcode' => fake()->isbn13(),
                 'expires_at' => Event::find($event['id'])->first()->end_date,
             ]);

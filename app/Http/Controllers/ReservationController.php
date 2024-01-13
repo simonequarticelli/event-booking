@@ -17,7 +17,6 @@ class ReservationController extends Controller
     public function __construct(
         public UserService $userService,
         public TransactionService $transactionService,
-        public EventService $eventService,
     ) {}
 
     /**
@@ -36,7 +35,7 @@ class ReservationController extends Controller
 
                 $totalPrice = 0.00;
                 foreach ($events as $event) {
-                    $this->eventService->processEvent($event, $transaction, $totalPrice);
+                    (new EventService($event['id']))->processEvent($event, $transaction, $totalPrice);
                 }
 
                 $transaction->increment('amount', $totalPrice);
