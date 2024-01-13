@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservationRequest;
-use App\Models\Event;
-use App\Models\Ticket;
-use App\Models\TicketState;
-use App\Models\Transaction;
-use App\Models\TransactionState;
 use App\Services\EventService;
+use App\Services\TransactionService;
 use App\Services\UserService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -20,6 +16,8 @@ class ReservationController extends Controller
 {
     public function __construct(
         public UserService $userService,
+        public TransactionService $transactionService,
+        public EventService $eventService,
     ) {}
 
     /**
@@ -34,39 +32,11 @@ class ReservationController extends Controller
         try {
             try {
                 $pendingTransaction = $this->userService->pendingTransaction()->first();
-
-                if (empty($pendingTransaction)) {
-                    $transaction = Transaction::create([
-                        'uuid' => fake()->uuid(),
-                        'user_id' => auth()->user()->id,
-                        'transaction_state_id' => TransactionState::where('slug', TransactionState::PENDING)->first()->id,
-                        'amount' => 0,
-                    ]);
-                } else {
-                    $transaction = $pendingTransaction;
-                }
+                $transaction = $this->transactionService->getOrCreateTransaction($pendingTransaction);
 
                 $totalPrice = 0.00;
                 foreach ($events as $event) {
-                    $eventService = new EventService($event['id']);
-                    $seatsQuantity = count($event['seats']);
-
-                    $eventService->validateByOptionsConfig($seatsQuantity);
-                    $eventService->availabilityCheck($seatsQuantity);
-
-
-                    foreach ($event['seats'] as $seat) {
-                        $totalPrice = $totalPrice+$eventService->getPriceByType($seat['type']);
-
-                        Ticket::create([
-                            'event_id' => $event['id'],
-                            'ticket_state_id' => TicketState::where('slug', TicketState::PENDING)->first()->id,
-                            'transaction_id' => $transaction->id,
-                            'price' => $eventService->getPriceByType($seat['type']),
-                            'barcode' => fake()->isbn13(),
-                            'expires_at' => Event::find($event['id'])->first()->end_date,
-                        ]);
-                    }
+                    $this->eventService->processEvent($event, $transaction, $totalPrice);
                 }
 
                 $transaction->increment('amount', $totalPrice);
