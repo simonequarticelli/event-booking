@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Ticket;
 use App\Models\TicketState;
 use App\Models\Transaction;
+use App\Repositories\Ticket\TicketRepository;
 use Exception;
 use Throwable;
 
@@ -49,6 +50,7 @@ class EventService
 
     public function processEvent(array $event, Transaction $transaction, float &$totalPrice): void
     {
+        $ticketRepository = new TicketRepository();
         $seatsQuantity = count($event['seats']);
 
         $this->validateByOptionsConfig($seatsQuantity);
@@ -58,7 +60,7 @@ class EventService
         foreach ($event['seats'] as $seat) {
             $totalPrice = $totalPrice + $this->getPriceByType($seat['type']);
 
-            Ticket::create([
+            $ticketRepository->save([
                 'event_id' => $event['id'],
                 'ticket_state_id' => TicketState::where('slug', TicketState::PENDING)->first()->id,
                 'transaction_id' => $transaction->id,
